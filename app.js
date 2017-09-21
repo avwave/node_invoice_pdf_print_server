@@ -19,11 +19,17 @@ app.get('/', function(req, res) {
   res.json({message: 'Hello'});
 });
 
-app.post('/pdf', function(req, res) {
+app.post('/pdf', function (req, res) {
   var templateData = req.body;
-
-  res.send(render.invoice(templateData));
-
+  const puppeteer = require('puppeteer');
+  (async() => {
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    const page = await browser.newPage();
+    await page.setContent(render.invoice(templateData));
+    var pdf = await page.pdf({format: 'A4'});
+    browser.close();
+    res.send(pdf);
+  })();
 })
 
 app.listen(port);
