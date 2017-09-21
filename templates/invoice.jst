@@ -15,14 +15,20 @@
               <h1 class="document-type-label">
                 INVOICE
               </h1>
-              <h5>{{=invoice.company_name}}</h5>
-              {{=invoice.billing_address}}
+              {{? invoice.company_name}}
+                <h5>{{=invoice.company_name}}</h5>
+              {{?}}
+                {{=invoice.billing_address}}
+              {{? invoice.billing_email}}
               <div class="billing-email">
                 {{=invoice.billing_email}}
               </div>
+              {{?}}
+              {{? invoice.billing_phone}}
               <div class="billing-phone">
                 {{=invoice.billing_phone}}
               </div>
+              {{?}}
             </div>
             <div class="col-xs-7 center">
               <div class="col-xs-12 logo-header">
