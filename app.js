@@ -28,6 +28,9 @@ app.post('/pdf', function (req, res) {
     await page.setContent(render.invoice(templateData));
     var pdf = await page.pdf({format: 'A4'});
     browser.close();
+
+    res.setHeader('Content-disposition', 'inline; filename="' + templateData.filename + '"');
+    res.setHeader('Content-type', 'application/pdf');
     res.send(pdf);
   })();
 })
