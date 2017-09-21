@@ -1,0 +1,17 @@
+{
+  "name": "node_html_print_server",
+  "version": "0.1.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "dot": "^1.1.2",
+    "express": "^4.15.4",
+    "puppeteer": "^0.10.2"
+  }
+}
