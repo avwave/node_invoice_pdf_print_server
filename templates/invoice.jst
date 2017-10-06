@@ -89,33 +89,47 @@
                   <th class="product">Description</th>
                   <th class="quantity">Quantity</th>
                   <th class="price">Unit Price</th>
-                  <th class="discount">Discount</th>
-                  <th class="amount">Amount</th>
+                  <th style="text-align: right" class="discount">Discount</th>
+                  <th style="text-align: right" class="amount">Amount</th>
+                  <th style="text-align: right" class="tax">Tax</th>
                 </tr>
               </thead>
 
               <tbody>
                 {{~invoice.orders :item:item_index}}
                   <tr>
-                    <td>
+                    <td width="100%">
                       <span>{{!item.name}}</span>
                       <dd>
                         for {{!item.recipient}}
                       </dd>
                     </td>
-                    <td>{{=item.quantity}}</td>
-                    <td>{{=item.price}}</td>
-                    <td align="right">{{=item.discount}}</td>
-                    <td align="right">{{=item.total}}</td>
-
+                    <td width="10%" >{{=item.quantity}}</td>
+                    <td width="10%" >{{=item.price}}</td>
+                    <td width="10%"  align="right">{{=item.discount}}</td>
+                    <td width="10%"  align="right">{{=item.total}}</td>
+                    <td width="10%"  align="right">{{=item.tax}}</td>
+                  </tr>
+                  <tr>
+                    <td width="100%">
+                      <span>{{!item.name}}</span>
+                      <dd>
+                        for {{!item.recipient}}
+                      </dd>
+                    </td>
+                    <td width="10%" >{{=item.quantity}}</td>
+                    <td width="10%" >{{=item.price}}</td>
+                    <td width="10%"  align="right">{{=item.discount}}</td>
+                    <td width="10%"  align="right">{{=item.total}}</td>
+                    <td width="10%"  align="right">{{=item.tax}}</td>
                   </tr>
                 {{~}}
               </tbody>
-              <tfoot>
+              <tbody>
       					<tr class="no-borders">
-      						<td class="no-borders" colspan="3">
+      						<td class="no-borders" colspan="1">
       						</td>
-      						<td class="no-borders" colspan="2">
+      						<td class="no-borders" colspan="5">
       							<table class="totals table table-condensed table-borderless">
       								<tfoot>
                         {{~invoice.totals :total:total_index}}
@@ -128,7 +142,7 @@
       							</table>
       						</td>
       					</tr>
-      				</tfoot>
+      				</tbody>
             </table>
             <div class="nobreak">
       				<div class="col-xs-12 document-footer">
