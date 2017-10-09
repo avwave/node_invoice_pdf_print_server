@@ -8,8 +8,10 @@ var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   puppeteer = require('puppeteer'),
-  render = require('./render')
+  render = require('./render'),
+  compression = require('compression')
 
+app.use(compression());
 app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}));
 app.use(bodyParser.json({limit: '50mb'}));
 
