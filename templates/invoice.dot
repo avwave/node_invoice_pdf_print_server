@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700');
+    </style> 
+    <style>
+    {{#def.styles}}
+    </style>
+  </head>
+  <body class="">
+    {{ for(var invoice of it.invoices) { }}
+      <div class="container">
+        <div class="well document">
+          
+          <div class="row ">
+            <table class="order-details table">
+              <thead>
+                <tr>
+                  <td colspan="6">
+                    <div class="row document-header center-row">
+                      <div class="col-xs-5 document-title center">
+                        <h1 class="document-type-label">
+                          TAX INVOICE
+                        </h1>
+                        {{? invoice.company_name}}
+                        <h5>{{=invoice.company_name}}</h5>
+                        {{?}} {{=invoice.billing_address}} {{? invoice.billing_email}}
+                        <div class="billing-email">
+                          {{=invoice.billing_email}}
+                        </div>
+                        {{?}} {{? invoice.billing_phone}}
+                        <div class="billing-phone">
+                          {{=invoice.billing_phone}}
+                        </div>
+                        {{?}}
+                      </div>
+                      <div class="col-xs-7 center">
+                        <div class="col-xs-9 col-xs-offset-3 logo-header">
+                          {{#def.logo}}
+                        </div>
+                        <div class="col-xs-9 col-xs-offset-3 order-data">
+                          <div class="invoice-number">
+                            <h5>
+                              <strong>Invoice Number: </strong>
+                              <span>{{=invoice.invoice_number}}</span>
+                            </h5>
+                          </div>
+                          <div class="invoice-date">
+                            <h5>
+                              <strong>Invoice Date: </strong>
+                              <span>{{=invoice.invoice_date}}</span>
+                            </h5>
+                          </div>
+                          {{? invoice.order_date}}
+                          <div class="order-date">
+                            <h5>
+                              <strong>Order Date: </strong>
+                              <span>{{=invoice.order_date}}</span>
+                            </h5>
+                          </div>
+                          {{?}}
+                          <div class="subscriber_number">
+                            <h5>
+                              <strong>Subscriber Number: </strong>
+                              <span>{{=invoice.customer_id}}</span>
+                            </h5>
+                          </div>
+                          <div class="reference">
+                            <h5>
+                              <strong>Purchase Order: </strong>
+                              <span>{{=invoice.order_number}}</span>
+                            </h5>
+                          </div>
+                          <div class="gst_number">
+                            <h5>
+                              <strong>GST Number:</strong>
+                              <span>{{=invoice.gst_number}}</span>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="product">Publication</th>
+                  <th class="quantity">Quantity</th>
+                  <th class="price">Unit Price</th>
+                  <th style="" class="discount">Discount</th>
+                  <th style="" class="amount">Amount</th>
+                  <th style="" class="tax">Tax</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {{~invoice.orders :item:item_index}}
+                  <tr>
+                    <td width="100%">
+                      <span>{{!item.name}}</span>
+                      <dd>
+                        for {{!item.recipient}}
+                      </dd>
+                    </td>
+                    <td width="10%" >{{=item.quantity}}</th>
+                    <td width="10%" >{{=item.price}}</td>
+                    <td width="10%" >{{=item.discount}}</td>
+                    <td width="10%" >{{=item.total}}</td>
+                    <td width="10%" >{{=item.tax}}</td>
+                  </tr>
+                {{~}}
+              </tbody>
+              <tfoot>
+      					<tr class="no-borders">
+      						<td class="no-borders" colspan="1">
+      						</td>
+      						<td class="no-borders" colspan="5">
+      							<table class="totals table table-condensed table-borderless">
+      								<tfoot>
+                        {{~invoice.totals :total:total_index}}
+      										<tr class="<?php echo $key; ?>">
+        										<th class="description">{{=total.label}}</th>
+        										<td class="price" align="right"><span class="totals-price">{{=total.value}}</span></td>
+        									</tr>
+      									{{~}}
+      								</tfoot>
+      							</table>
+      						</td>
+      					</tr>
+      				</tfoot>
+            </table>
+
+            {{? invoice.due_date}}
+            <div class="nobreak">
+      				<div class="col-xs-12 document-footer">
+      					<div class="row nobreak">
+      							<div class="col-xs-12 nobreak">
+      								<h4>Due Date: {{=invoice.due_date}}</h4>
+      								<p>
+                            Please make payment by {{=invoice.due_date}} by direct credit to our bank account <strong>02 0688 0227616 25</strong>. Please use invoice number as your reference.
+                            &nbsp;&nbsp;Email <em>subs@nzfarmlife.co.nz</em> for assistance or phone anytime on <strong>0800 224 782</strong> (<strong>+646 280 3161</strong> for overseas callers)
+                            <br/>
+                            Thanks for your business.
+                      </p>
+      							</div>
+      						<?php }?>
+      						<div id="scissors" class="col-xs-12 nobreak">
+      							<div class="col-xs-5 mailing-address">
+      								<h2>PAYMENT ADVICE</h2>
+      									<p class="to-address">
+      										<span class='company-name'>NZ Farm Life Media Ltd</span>
+      										<div class="col-xs-12 address">
+                            <div>{{=invoice.store_address}}</div>
+                          </div>
+      									</p>
+      							</div>
+      							<div class="col-xs-7 order-summary">
+      								<table class="totals table table-condensed">
+      									<tfoot>
+      										<tr class="">
+      											<th class="description">Customer Number</th>
+      											<td class="customer-name">{{=invoice.customer_id}}</td>
+      										</tr>
+      										<tr class="">
+      											<th class="description">Order Number</th>
+      											<td class="invoice_number">{{=invoice.order_number}}</td>
+      										</tr>
+      										<tr class="">
+      											<th class="description">Amount Due</th>
+      											<td class="amount-due"><span class="totals-price">{{=invoice.grand_total.value}}</span></td>
+      										</tr>
+      										<tr class="">
+      											<th class="description">Due Date</th>
+      											<td class="invoice_number">
+      											{{=invoice.due_date}}
+      											</td>
+      										</tr>
+      										<tr class="">
+      											<th class="description">Amount Enclosed</th>
+      											<td class="amount-enclosed">$<br/>
+      											</br/><span class="overline">Enter the amount you are paying above</span></td>
+      										</tr>
+      									</tfoot>
+      								</table>
+      							</div>
+      						</div>
+      					</div>
+      				</div>
+      			</div>
+            {{?}}
+
+          </div>
+        </div>
+      </div>
+      <div style="page-break-before: always;"></div>
+    {{ } }}
+
+  </body>
+</html>

@@ -1,4 +1,4 @@
-require("dot").process({
+var dots = require("dot").process({
   global: "_page.render",
   destination: __dirname + "/render/",
   path: (__dirname + "/templates")
@@ -8,7 +8,7 @@ var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   puppeteer = require('puppeteer'),
-  render = require('./render'),
+  
   compression = require('compression')
 
 app.use(compression());
@@ -27,7 +27,8 @@ app.post('/pdf', function (req, res) {
   (async() => {
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
-    await page.setContent(render.invoice(templateData));
+    await page.goto('data:text/html,' + dots.invoice(templateData), {waitUntil: 'load', networkIdleTimeout: 5000});
+
     var pdf = await page.pdf({format: 'A4'});
     browser.close();
 
@@ -39,3 +40,4 @@ app.post('/pdf', function (req, res) {
 
 app.listen(port);
 console.log('running printserver on ' + port);
+
