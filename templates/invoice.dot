@@ -97,9 +97,11 @@
                   <tr>
                     <td width="100%">
                       <span>{{!item.name}}</span>
+                      {{? item.recipient}}
                       <dd>
                         for {{!item.recipient}}
                       </dd>
+                      {{?}}
                     </td>
                     <td width="10%" >{{=item.quantity}}</th>
                     <td width="10%" >{{=item.price}}</td>
