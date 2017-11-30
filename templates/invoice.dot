@@ -22,13 +22,16 @@
                         <h1 class="document-type-label">
                           TAX INVOICE
                         </h1>
-                        {{? invoice.company_name}}
-                        <h5>{{=invoice.company_name}}</h5>
-                        {{?}} {{=invoice.billing_address}} {{? invoice.billing_email}}
+                        
+                        {{=invoice.billing_address}}
+                        
+                        {{? invoice.billing_email}}
                         <div class="billing-email">
                           {{=invoice.billing_email}}
                         </div>
-                        {{?}} {{? invoice.billing_phone}}
+                        {{?}}
+                        
+                        {{? invoice.billing_phone}}
                         <div class="billing-phone">
                           {{=invoice.billing_phone}}
                         </div>
@@ -138,9 +141,10 @@
       				<div class="col-xs-12 document-footer">
       					<div class="row nobreak">
       							<div class="col-xs-12 nobreak">
-      								<h4>Due Date: {{=invoice.due_date}}</h4>
+      								<h4>Due Date: {{=invoice.due_date}} <small>Please note new bank account number</small></h4>
+                      <br/>
       								<p>
-                            Please make payment by {{=invoice.due_date}} by direct credit to our bank account <strong>02 0688 0227616 25</strong>. Please use invoice number as your reference.
+                            Please make payment by {{=invoice.due_date}} by direct credit to our bank account <strong>02 0688 0227616 25</strong>. Please use subscriber number as your reference.
                             &nbsp;&nbsp;Email <em>subs@nzfarmlife.co.nz</em> for assistance or phone anytime on <strong>0800 224 782</strong> (<strong>+646 280 3161</strong> for overseas callers)
                             <br/>
                             Thanks for your business.
@@ -161,7 +165,7 @@
       								<table class="totals table table-condensed">
       									<tfoot>
       										<tr class="">
-      											<th class="description">Customer Number</th>
+      											<th class="description">Subscriber Number</th>
       											<td class="customer-name">{{=invoice.customer_id}}</td>
       										</tr>
       										<tr class="">
