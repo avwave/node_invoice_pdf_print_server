@@ -65,12 +65,14 @@
                               <span>{{=invoice.customer_id}}</span>
                             </h5>
                           </div>
+                          {{? invoice.ponumber}}
                           <div class="reference">
                             <h5>
                               <strong>Purchase Order: </strong>
-                              <span>{{=invoice.order_number}}</span>
+                              <span>{{=invoice.ponumber}}</span>
                             </h5>
                           </div>
+                          {{?}}
                           <div class="gst_number">
                             <h5>
                               <strong>GST Number:</strong>
