@@ -138,7 +138,19 @@
       								<h4>Due Date: {{=invoice.due_date}} <small>Please note new bank account number</small></h4>
                       <br/>
       								<p>
-                            Please make payment by {{=invoice.due_date}} by direct credit to our bank account <strong>BNZ Masterton, 02 0688 0227616 25, BKNZNZ22</strong>. Please use subscriber number as your reference.
+                            Please make payment by {{=invoice.due_date}} by direct credit to :
+                      </p>
+                            <div class="row nobreak">
+                            <div class="col-xs-9 col-xs-offset-1">
+                                <dl>
+                                  <dd><strong>Bank name/branch:</strong> BNZ Masterton</dd>
+                                  <dd><strong>Bank account:</strong> 02 0688 0227616 00 </dd>
+                                  <dd><strong>Swift Code:</strong> BKNZNZ22</dd>
+                                </dl>
+                              </div>
+                            </div>
+                      <p>
+                            Please use subscriber number as your reference.
                             &nbsp;&nbsp;Email <em>subs@nzfarmlife.co.nz</em> for assistance or phone anytime on <strong>0800 224 782</strong> (<strong>+646 280 3161</strong> for overseas callers)
                             <br/>
                             Thanks for your business.
