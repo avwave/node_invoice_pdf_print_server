@@ -18,7 +18,7 @@
                 <tr>
                   <td colspan="6">
                     <div class="row document-header center-row">
-                      <div class="col-xs-5 document-title center">
+                      <div class="col-xs-5 col-xs-offset-1 document-title center">
                         <h1 class="document-type-label">
                           TAX INVOICE
                         </h1>
@@ -31,7 +31,7 @@
                         </div>
                         {{?}}
                       </div>
-                      <div class="col-xs-7 center">
+                      <div class="col-xs-6 center">
                         <div class="col-xs-9 col-xs-offset-3 logo-header">
                           {{#def.logo}}
                         </div>

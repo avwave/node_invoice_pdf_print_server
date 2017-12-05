@@ -2386,8 +2386,13 @@ button.list-group-item-danger.active:focus {
 }
 
 
+
+h1.document-type-label {
+  margin-bottom: 50px;
+}
+
 div.document-header {
-  padding-bottom: 30px;
+  margin-bottom: 50px;
 }
 div.document-footer {
 
