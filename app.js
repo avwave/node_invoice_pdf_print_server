@@ -28,7 +28,7 @@ app.post('/pdf', function (req, res) {
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
 //    await page.goto('data:text/html,' + dots.invoice(templateData), {waitUntil: 'load', networkIdleTimeout: 5000});
-    await page.setContent(dots.invoice(templateData), {timeout: 0});
+    await page.setContent(dots.invoice(templateData), {timeout: 0}).catch(e=>console.log(e));
     var pdf = await page.pdf({format: 'A4'});
     browser.close();
 
@@ -38,6 +38,23 @@ app.post('/pdf', function (req, res) {
   })();
 })
 
+app.post('/pdfraw', function (req, res) {
+  var templateData = req.body;
+  const puppeteer = require('puppeteer');
+  (async() => {
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    const page = await browser.newPage();
+    console.log(templateData.body)
+//    await page.goto('data:text/html,' + dots.invoice(templateData), {waitUntil: 'load', networkIdleTimeout: 5000});
+    await page.setContent(templateData.body, {timeout: 0}).catch(e=>console.log(e));
+    var pdf = await page.pdf({format: 'A4'});
+    browser.close();
+
+    res.setHeader('Content-disposition', 'inline; filename="' + templateData.filename + '"');
+    res.setHeader('Content-type', 'application/pdf');
+    res.send(pdf);
+  })();
+})
 app.listen(port);
 console.log('running printserver on ' + port);
 
